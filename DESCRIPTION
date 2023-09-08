@@ -1,0 +1,10 @@
+Package: FALL234753ghaz0010
+Type: Package
+Title: MATH 4753 functions.
+Version: 0.1.0
+Author: Ameer Ghazal
+Maintainer: Ameer Ghazal <officialameerghazal@outlook.com>
+Description: Lab functions for MATH 4753.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
