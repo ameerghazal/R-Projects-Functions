@@ -3,7 +3,7 @@
 \docType{data}
 \name{fire}
 \alias{fire}
-\title{Fire damage}
+\title{Fire damage data.}
 \format{
 A data frame with 15 rows and 2 variables:
 \describe{
@@ -18,6 +18,6 @@ A data frame with 15 rows and 2 variables:
 fire
 }
 \description{
-A data set collected concerning home damage from fire
+A data set collected concerning home damage from fire.
 }
 \keyword{datasets}

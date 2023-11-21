@@ -7,7 +7,7 @@
 mynbin(y, r, p)
 }
 \arguments{
-\item{y}{the number of trials until the 'rth' sucess is observed.}
+\item{y}{the number of trials until the 'rth' success is observed.}
 
 \item{r}{the size / number of total trials.}
 
@@ -17,8 +17,9 @@ mynbin(y, r, p)
 returns the negative binomial distribution data.
 }
 \description{
-Negative Binomial
+{The following function will calculate the negative binomial distribution by pure definition.
+That is, it will utilize the choose function. For example (P<=10).}
 }
 \examples{
-#P(Y=10)Y~NegBin(p=0.4,r=3)
+\dontrun{mynbin(y=10, r=3, p=0.4)}
 }

@@ -1,10 +1,10 @@
 #' @title Overbooking Ticket Function (CLT)
 #'
-#' Based on the Central limit theorm, we can use a continous normal approximation for a discrete variable.
+#' @description Based on the Central limit theorem, we can use a continuous normal approximation for a discrete variable.
 #' Thus, we solve for -n- number of seats sold, with the possibility of an overbook in both the discrete case and the continuous case.
 #' We used functions such as which.min() and stats::uniroot() to calculate these values.
 #' From there, we calculated nc and nd as-well as the other given values and put them into a list.
-#' Finally, we plotted both the discrete and continous approximations.
+#' Finally, we plotted both the discrete and continuous approximations.
 #'
 #'
 #' @importFrom stats pnorm
@@ -22,6 +22,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{ntickets(N=200, gamma=0.02, p=0.95)}
 ntickets <- function (N, gamma, p) {
 
   # First, define the objective function inside of the n-tickets (discrete).
@@ -40,26 +41,25 @@ ntickets <- function (N, gamma, p) {
   idx <- which.min(absPoint)
 
   # Use the minimum index and access the npos to define n.
-  n <- npos[idx]
-  print(n)
+  nd <- npos[idx]
+  print(nd)
 
   # Now, we have our n-value so we can calculate for the discrete distribution.
-  nd <- pbinom(N, n, p)
-  print(nd)
+  print(pbinom(N, nd, p))
 
   # Now, let's plot the discrete distributon:
 
   ## Plot the disrecte distribution (STEP 3)
-  plot(x=npos, y=objNpos, xlab="n", ylab = "Objective-Discrete", main = paste("Objective vs. n (Discrete Binomial) \n (n = ", n, ", gamma = ", gamma, ", probability = ", p, ", N = ", N), ylim=c(0,1), pch=19, col="Blue")
+  plot(x=npos, y=objNpos, xlab="n", ylab = "Objective-Discrete", main = paste("Objective vs. n (Discrete Binomial) \n (n = ", nd, ", gamma = ", gamma, ", probability = ", p, ", N = ", N), ylim=c(0,1), pch=19, col="Blue")
 
   # Draw the curve.
   lines(x = npos, y = objNpos, col = "Black")
 
   # Draw the redline, indicating the point minimum.
-  abline(v = n, h=0, col="Red")
+  abline(v = nd, h=0, col="Red")
 
 
-  # Now, let's do the continous approximation.
+  # Now, let's do the continuous approximation.
 
   # Continuous Approximation objective function.
   objFunctionContinous <- function (n) {
@@ -74,38 +74,35 @@ ntickets <- function (N, gamma, p) {
     sampleSDs <- sqrt(sampleVars)
 
     # Now, use the pnorm() function for the approximation with q=N.
-    list <- 1 - gamma - pnorm(N, sampleMeans, sampleSDs)
+    list <- 1 - gamma - pnorm(N+0.5, sampleMeans, sampleSDs)
 
     # Return the list of the pnorm's.
     return(list)
   }
 
-
   # Find the root (0) by using the uni-root function.
-  ncUni <- stats::uniroot(objFunctionContinous, interval = c(N, N+20), maxiter=1000000)$root
+  nc <- stats::uniroot(objFunctionContinous, interval = c(N, N+20), maxiter=1000000)$root
 
   # Saved the root above, print out.
-  print(ncUni)
+  print(nc)
 
   # Draw the curve for the continous plot (STEP 3).
-  curve(objFunctionContinous, xlim = c(N, N+30), ylim=c(0,1), xlab="n", ylab="Objective-Continous", main=paste("Objective vs. n (Continous Normal Apprx.) \n (n = ", ncUni, ", gamma = ", gamma, ", probability = ", p, ", N = ", N), lwd=4)
+  curve(objFunctionContinous, xlim = c(N, N+30), ylim=c(0,1), xlab="n", ylab="Objective-Continous", main=paste("Objective vs. n (Continous Normal Apprx.) \n (n = ", nc, ", gamma = ", gamma, ", probability = ", p, ", N = ", N), lwd=4)
 
   # Draw the red-curve, signaling the correct point.
-  abline(v = ncUni, h = 0, col="Red")
+  abline(v = nc, h = 0, col="Red")
 
   # So, we now have our n for the continuous, thus, we can calculate nc:
 
   # Calculate the mean and the sd.
-  sampleMean <- ncUni * p
+  sampleMean <- nc * p
   sampleSD <- sqrt(sampleMean * (1-p))
 
   # Use the values above with a right correction for the nc approximation.
-  nc <- pnorm(N+0.5, sampleMean, sampleSD)
-  print(nc)
-
+  print(pnorm(N+0.5, sampleMean, sampleSD))
 
   ## Step 2: Create a list and print containing nc, nd, p, N, and gamma and label all.
-  list <- c("Discrete (Binomial)"= nd, "Continous Approx." = nc, "Seats on Flight" = N, "Probability Showing" = p, "  Probability Overbooked" = gamma)
+  list <- c("Discrete (Binomial) n"= nd, "Continous Approx. n" = nc, "Seats on Flight" = N, "Probability Showing" = p, "  Probability Overbooked" = gamma)
   print(list)
 
 
@@ -164,6 +161,10 @@ ntickets <- function (N, gamma, p) {
 
 }
 
-# Call the function
-ntickets(N=400, gamma=0.02, p=0.95)
+
+
+
+
+
+
 

@@ -1,0 +1,92 @@
+---
+title: "Ameer-Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Ameer-Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(FALL234753ghaz0010)
+```
+
+# Introduction
+
+This package contains 10 different functions and 1 data set all pertaining to the scope of MATH 4753, chapter 1-10 from the textbook. Each function has its own functionality; for example, the package contains a bootstrap interval for any parameter, a confidence interval for mean, and more. More on this, there are functions that will also plot data. For instance, myncurve will plot the normal curve to the user.
+
+The following functions will be denoted with examples below, in which all examples will be used via the FIRE data set from the package.
+
+**NOTE: I only included four functions; however, the full package includes 10.**
+
+```{r}
+# Call the data, via scope resolution.
+fire <- FALL234753ghaz0010::fire
+fire
+```
+
+## Confidence Interval for a Population Mean of One Sample (myci)
+
+We will use the FIRE data set for the example.
+
+```{r}
+# Call the function.
+myci(x = fire$DISTANCE, alpha = 0.05)
+```
+In the example above, we pass in the distance data. From there, the function will compute the point estimate, sample standand deviation, and store the sample size. Note, this example $n < 30$, thus it will utilize a t-statistic. From there, via our alpha passed in, the function will calculate the t-stat and form the interval via the formula:
+
+\[\overline y \pm (t_{\tfrac{\alpha}{2}}\tfrac{s}{\sqrt{n}})\]
+
+Finally, the lower and upper bounds (L,U) are stored in a vector and returned as a $(1-\alpha)100\%$ confidence interval (in our example, 95%). Thus, in our case, the 95% CI returned is $(2.410, 4.153)$.
+
+
+
+
+## Normal Distribution Plot
+
+The following function will plot a normal distribution with a given mean, standard deviation, and y-value. The function begins by drawing the curve on the screen with an arbitary 'x', with bounds out 3 standard deviations. From there, the function shadres in the lower-bound value with the 'a' passed in, mimicing $P(Y <= a)$. The x and y curves are drawn in, and the polygon function is utilized to draw the AUC.
+
+```{r}
+# Pass in random parameters.
+FALL234753ghaz0010::myncurve(mu = 10, sigma = 5, a = 5)
+```
+
+Returned is the plot of the data above.
+
+## Negative Binomial Distrubtion
+
+The following function does not utilize a specific data set, though, it can be applied if necessary. In our case, we can simply plug in values, as it will model a choose function. Say we have:
+
+\[Y \sim NBinom(n = 10, p = 0.4) \ find \  P(Y < 15) \]
+
+Remember, this is a discrete distribution, so end points matter, and remember the reparametrization:
+\[Y - R = X; \ r = n \]
+
+```{r}
+# End point correction since discrete.
+mynbin(y = 14, r = 10, p = 0.4)
+
+```
+
+The function utilizes the choose function, which models the textbook equation:
+
+\[{{y-1}\choose{r-1}}p^rq^{y-r}\]
+
+## Overbooking Ticket Function
+
+Based on the Central limit theorem, we can use a continuous normal approximation for a discrete variable. Thus, we solve for -n- number of seats sold, with the possibility of an overbook in both the discrete case and the continuous case. We used functions such as which.min() and stats::uniroot() to calculate these values. From there, we calculated nc and nd as-well as the other given values and put them into a list. 
+
+```{r}
+FALL234753ghaz0010::ntickets(N = 200, gamma = 0.02, p = 0.95)
+```
+
+Returned is a list containing the binomial data along with the continuous approximation. Also, listed is the number of seats on the flight, the probability of showing up, and the probability of overbooking. Finally, we plotted both the discrete and continuous approximations.
+
+

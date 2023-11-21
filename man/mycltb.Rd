@@ -2,9 +2,7 @@
 % Please edit documentation in R/mycltb.R
 \name{mycltb}
 \alias{mycltb}
-\title{Central Limit Theorem Binomial Function
-
-The function works for discrete and continous distributions.}
+\title{Central Limit Theorem Binomial Function}
 \usage{
 mycltb(n, iter, p = 0.5, ...)
 }
@@ -15,16 +13,15 @@ mycltb(n, iter, p = 0.5, ...)
 
 \item{p}{the probability.}
 
-\item{...}{any remaning parameters.}
+\item{...}{any remaining parameters.}
 }
 \value{
-a vector containg the x-values of the plot (sample mean) vs. the y-values of the plot (density).
+a vector containing the x-values of the plot (sample mean) vs. the y-values of the plot (density).
 }
 \description{
-Central Limit Theorem Binomial Function
-
-The function works for discrete and continous distributions.
+{Application of the CLT with discrete and continuous
+binomial approximation.}
 }
 \examples{
-mycltb(n=10, iter=10000, p=0.5)
+\dontrun{mycltb(n=10, iter=10000, p=0.5)}
 }

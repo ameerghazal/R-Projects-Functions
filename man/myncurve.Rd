@@ -17,5 +17,5 @@ myncurve(mu, sigma, a)
 returns the normal distribution plotted, shaded for the area under the curve, given a, and the P(Y<=a).
 }
 \description{
-Normal Distribution Plot
+The following function will plot a normal distribution with the given mean, sd, and y.
 }

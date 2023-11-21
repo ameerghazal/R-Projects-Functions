@@ -2,13 +2,7 @@
 % Please edit documentation in R/mynticketsOverbook.R
 \name{ntickets}
 \alias{ntickets}
-\title{Overbooking Ticket Function (CLT)
-
-Based on the Central limit theorm, we can use a continous normal approximation for a discrete variable.
-Thus, we solve for -n- number of seats sold, with the possibility of an overbook in both the discrete case and the continuous case.
-We used functions such as which.min() and stats::uniroot() to calculate these values.
-From there, we calculated nc and nd as-well as the other given values and put them into a list.
-Finally, we plotted both the discrete and continous approximations.}
+\title{Overbooking Ticket Function (CLT)}
 \usage{
 ntickets(N, gamma, p)
 }
@@ -23,11 +17,12 @@ ntickets(N, gamma, p)
 returns multiple plots, a list of the discrete and continuous approximations w/ other parameters.
 }
 \description{
-Overbooking Ticket Function (CLT)
-
-Based on the Central limit theorm, we can use a continous normal approximation for a discrete variable.
+Based on the Central limit theorem, we can use a continuous normal approximation for a discrete variable.
 Thus, we solve for -n- number of seats sold, with the possibility of an overbook in both the discrete case and the continuous case.
 We used functions such as which.min() and stats::uniroot() to calculate these values.
 From there, we calculated nc and nd as-well as the other given values and put them into a list.
-Finally, we plotted both the discrete and continous approximations.
+Finally, we plotted both the discrete and continuous approximations.
+}
+\examples{
+\dontrun{ntickets(N=200, gamma=0.02, p=0.95)}
 }

@@ -1,15 +1,18 @@
 #' @title Central Limit Theorem Binomial Function
 #'
-#' The function works for discrete and continous distributions.
+#' @description {Application of the CLT with discrete and continuous
+#' binomial approximation.}
+#'
 #' @param n the size.
 #' @param iter the number of iterations.
 #' @param p the probability.
-#' @param ... any remaning parameters.
+#' @param ... any remaining parameters.
 #'
-#' @return a vector containg the x-values of the plot (sample mean) vs. the y-values of the plot (density).
+#' @return a vector containing the x-values of the plot (sample mean) vs. the y-values of the plot (density).
 #' @export
 #'
-#' @examples mycltb(n=10, iter=10000, p=0.5)
+#' @examples
+#' \dontrun{mycltb(n=10, iter=10000, p=0.5)}
 mycltb=function(n,iter,p=0.5,...){
 
   ## For the dnorm function below and the RMD check, we set x to "null".
@@ -51,6 +54,3 @@ mycltb=function(n,iter,p=0.5,...){
   curve(dnorm(x,mean=n*p,sd=sqrt(p*(1-p))),add=TRUE,col="Red",lty=2,lwd=3)
 
 }
-
-w <- mycltb(n=4, iter=10000, p=0.3)
-w

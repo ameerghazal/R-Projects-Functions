@@ -1,5 +1,7 @@
 #' @title Normal Distribution Plot
 #'
+#' @description The following function will plot a normal distribution with the given mean, sd, and y.
+#'
 #' @importFrom stats dnorm
 #' @importFrom graphics polygon
 #' @importFrom graphics text
@@ -13,6 +15,8 @@
 #' @return returns the normal distribution plotted, shaded for the area under the curve, given a, and the P(Y<=a).
 #' @export
 #'
+#' @example
+#' \dontrun{myncurve(mu=0, sigma=1, a = 0.05)}
 myncurve = function(mu, sigma, a){
 
   # For the dnorm function below, assign x to null.

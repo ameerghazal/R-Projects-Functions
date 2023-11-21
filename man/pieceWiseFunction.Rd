@@ -17,5 +17,8 @@ pieceWiseFunction(x, coef, xk)
 returns the a vector of y-points based on the equation or just one y-value.
 }
 \description{
-Piecewise function checker.
+This function will check if a function follows a piece-wise model.
+}
+\examples{
+\dontrun{pieceWiseFunction(x=1, coef=2, xk=3)}
 }

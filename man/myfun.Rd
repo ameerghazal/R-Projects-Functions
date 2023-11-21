@@ -2,19 +2,19 @@
 % Please edit documentation in R/myfun.R
 \name{myfun}
 \alias{myfun}
-\title{My first function}
+\title{x-squared}
 \usage{
 myfun(x)
 }
 \arguments{
-\item{x}{A quantative vector containing values.}
+\item{x}{A quantitative vector containing values.}
 }
 \value{
 A vector of squared components.
 }
 \description{
-My first function
+Squares the x-term of the vector (or single value).
 }
 \examples{
-myfun(1:10)
+\dontrun{myfun(1:10)}
 }

@@ -1,12 +1,14 @@
-#' My first function
+#' @title x-squared
 #'
-#' @param x A quantative vector containing values.
+#' @description Squares the x-term of the vector (or single value).
+#'
+#' @param x A quantitative vector containing values.
 #'
 #' @return A vector of squared components.
 #' @export
 #'
 #' @examples
-#' myfun(1:10)
+#' \dontrun{myfun(1:10)}
 myfun <- function(x) {
   x^2
 }
