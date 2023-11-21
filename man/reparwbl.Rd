@@ -15,5 +15,5 @@ reparwbl(a, b)
 returns a list of the correct R parameterization.
 }
 \description{
-Weibull reparameterization from the book to R.
+This function reparameterizes the weibull distribution into R.
 }
